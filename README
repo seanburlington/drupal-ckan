@@ -1,0 +1,9 @@
+This is a Drupal [http:/drupal.org] module that integrates Drupal with CKAN [http://www.ckan.net/]
+
+To use it download Drupal and install it.
+
+Then add the module as usual in sites/all/modules/ckan/
+
+You will now have the ability to use your Drupal site to search for CKAN packages - and store comments etc about the packages in your site.
+
+

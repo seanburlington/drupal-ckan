@@ -1,0 +1,6 @@
+
+name = CKAN Content Type
+description = Relates External CKAN data packages to Drupal Nodes
+core = 6.x
+dependencies[] = path
+

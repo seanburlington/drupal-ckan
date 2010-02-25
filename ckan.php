@@ -3,7 +3,7 @@
 /**
  * @author Sean Burlington www.practicalweb.co.uk
  * @copyright PracticalWeb Ltd
- * @license http://opensource.org/licenses/gpl-license.php GNU Public License
+ * @license http://opensource.org/licenses/gpl-2.0.php
  * 
  */
 class Ckan {

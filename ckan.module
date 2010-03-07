@@ -227,7 +227,7 @@ function ckan_theme() {
 
 function theme_ckan_search_results($results) {
     $content = '';
-    $content .= "<p>". $results->count ." Results found</p>";
+    $content .= "<p>". $results->count .t(' Results found'). "</p>";
     foreach ($results->results as $package) {
     	$content .= '<h2>' . l($package->title, 'ckan/data/' . urlencode(check_plain($package->name))) . '</h2>';
     	$content .= '<p>' . nl2br(check_plain($package->notes)) . '</p>';

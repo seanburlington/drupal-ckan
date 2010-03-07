@@ -19,7 +19,7 @@
  * 
  */
 
-function ckan_menu(){
+function ckan_menu() {
     $items = array();
 
     // link to the search form page
@@ -55,11 +55,11 @@ function ckan_menu(){
  *  
  * @return Ckan $ckan
  */
-function ckan_ckan(){
-	static $ckan=null;
-	if (!$ckan){
+function ckan_ckan() {
+	static $ckan = NULL;
+	if (!$ckan) {
 		require_once(dirname(__FILE__) . '/ckan.php');
-		$ckan=new Ckan(variable_get('ckan_site', 'http://www.ckan.net/'));
+		$ckan = new Ckan(variable_get('ckan_site', 'http://www.ckan.net/'));
 	}
 	return $ckan;
 }
@@ -70,7 +70,7 @@ function ckan_ckan(){
  * @param Array $form_state
  * @return Array $form
  */
-function ckan_search_form(&$form_state){
+function ckan_search_form(&$form_state) {
 
 	$form = array();
 	$form['q'] = array(
@@ -102,13 +102,13 @@ function ckan_search_form_submit($form, &$form_state) {
   
 }
 
-function ckan_search_results_page($search){
+function ckan_search_results_page($search) {
 //	return $search;
     try {
      $ckan = ckan_ckan();
 
      $results = $ckan->search(check_plain($search));
-    } catch (Exception $e){
+    } catch(Exception $e) {
         return $e->getMessage();
     }
     return theme('ckan_search_results', $results);
@@ -121,12 +121,12 @@ function ckan_search_results_page($search){
  * 
  * @param String $ckan_name
  */
-function ckan_new($ckan_name){
+function ckan_new($ckan_name) {
 
     $ckan = ckan_ckan();
     try {
         $ckan_data = $ckan->getPackage($ckan_name);
-    } catch (CkanException $e){
+    } catch(CkanException $e) {
         drupal_set_message($e->getMessage(), 'error');
         drupal_set_title("Error");
         return "Error" ;
@@ -137,7 +137,7 @@ function ckan_new($ckan_name){
 
 
 
-function ckan_create_node($ckan_data){
+function ckan_create_node($ckan_data) {
     $node = array(
               'title'   => $ckan_data->title,
               'uid'     => 1,
@@ -175,11 +175,11 @@ function ckan_node_info() {
     );
 }
 
-function ckan_load($node){
+function ckan_load($node) {
 	$ckan = ckan_ckan();
 	try {
 		$node->ckan = $ckan->getPackage($node->body);
-	} catch(Exception $e){
+	} catch(Exception $e) {
 		drupal_set_message($e->getMessage(), 'error');
 	}
 //	print_r($node->ckan);
@@ -212,12 +212,12 @@ function ckan_theme() {
 
 function theme_ckan_search_results($results) {
     $content = '';
-    $content .= "<p>" . $results->count . " Results found</p>";
-    foreach ($results->results as $package){
+    $content .= "<p>". $results->count ." Results found</p>";
+    foreach ($results->results as $package) {
     	$content .= '<h2>' . l($package->title, 'ckan/data/' . urlencode(check_plain($package->name))) . '</h2>';
     	$content .= '<p>' . nl2br(check_plain($package->notes)) . '</p>';
     	$content .= '<p>';
-    	foreach ($package->groups as $i => $group){
+    	foreach ($package->groups as $i => $group) {
     		$content .= '<b>' . check_plain($group) . '</b> ';
     	}
     	$content .= '</p>';
